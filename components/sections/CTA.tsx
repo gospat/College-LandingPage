@@ -45,8 +45,8 @@ export default function CTA() {
                 <div className="mt-1">
                   <h5 className="font-semibold tracking-wide text-lg mb-2 text-white">University Campus</h5>
                   <p className="text-gray-400 leading-relaxed font-light">
-                    123 Education Boulevard, Knowledge City<br />
-                    Ahmedabad, Gujarat 380001
+                    Benja Village, Km. 8, Idiroko Road<br />
+                    Ota, Ogun State, Nigeria
                   </p>
                 </div>
               </div>
@@ -58,7 +58,7 @@ export default function CTA() {
                 <div className="mt-1">
                   <h5 className="font-semibold tracking-wide text-lg mb-2 text-white">Admissions Helpline</h5>
                   <p className="text-gray-400 leading-relaxed font-light">
-                    +91 1800 123 4567<br />
+                    +234 703 318 0831<br />
                     Mon - Sat, 9:00 AM - 6:00 PM
                   </p>
                 </div>
@@ -71,8 +71,8 @@ export default function CTA() {
                 <div className="mt-1">
                   <h5 className="font-semibold tracking-wide text-lg mb-2 text-white">Email Us</h5>
                   <p className="text-gray-400 leading-relaxed font-light">
-                    admissions@reducate.edu.in<br />
-                    info@reducate.edu.in
+                    info@bellsuniversity.edu.ng<br />
+                    admissions@bellsuniversity.edu.ng
                   </p>
                 </div>
               </div>

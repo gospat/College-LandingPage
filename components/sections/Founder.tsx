@@ -2,6 +2,7 @@
 
 import { Quote } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Founder() {
   return (
@@ -21,10 +22,12 @@ export default function Founder() {
             className="relative"
           >
             <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(13,33,59,0.2)] ring-1 ring-black/5">
-              <img 
-                src="/assets/founder.webp" 
-                alt="Founder of REducate University"
-                className="w-full h-full object-cover scale-[1.01] hover:scale-105 transition-transform duration-700"
+              <Image
+                src="/assets/founder.webp"
+                alt="Bells University of Technology leadership"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover scale-[1.01] hover:scale-105 transition-transform duration-700"
               />
               {/* Subtle bottom gradient on portrait */}
               <div className="absolute inset-0 bg-gradient-to-t from-brand-secondary/30 via-transparent to-transparent" />
@@ -49,7 +52,7 @@ export default function Founder() {
             
             <span className="eyebrow text-brand-primary mb-4 inline-flex items-center gap-2">
               <span className="w-6 h-px bg-brand-primary" />
-              From the Founder's Diary
+              From the Leadership Desk
             </span>
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-secondary mb-8 leading-tight">
               A Vision for the <br />
@@ -58,13 +61,13 @@ export default function Founder() {
             
             <div className="space-y-6 text-lg text-gray-600 font-light leading-relaxed">
               <p>
-                "When we laid the foundation stone of REducate University four decades ago, we had a singular vision: to create an institution that doesn't just impart knowledge, but builds character. We wanted a place where raw potential is ignited, and global leaders are forged."
+                &ldquo;Our goal is simple: create an environment where students gain strong knowledge, build practical skills, and develop the character to lead. We believe education should be rigorous, relevant, and rooted in service to society.&rdquo;
               </p>
               <p>
-                "Today, as I walk through our bustling campus, I see that vision living and breathing in every student. Education is not merely about career preparation; it is about cultivating a mindset of continuous inquiry, unwavering ethics, and deep social responsibility."
+                &ldquo;At Bells, we focus on future-ready learning built on strong academics, practical exposure, and innovation. We want graduates who can solve real problems in industry and society.&rdquo;
               </p>
               <p>
-                "Our commitment remains steadfast—to empower the next generation with the skills, wisdom, and courage to transform the world."
+                &ldquo;Our commitment remains steadfast: to empower the next generation with the skills, wisdom, and courage to transform the world.&rdquo;
               </p>
             </div>
             
@@ -73,8 +76,8 @@ export default function Founder() {
                 AD
               </div>
               <div>
-                <h4 className="text-xl font-bold text-brand-secondary font-serif">Dr. Anand Desai</h4>
-                <p className="text-gray-500 font-medium text-sm mt-0.5">Founder & Chancellor, REducate University</p>
+                <h4 className="text-xl font-bold text-brand-secondary font-serif">University Leadership</h4>
+                <p className="text-gray-500 font-medium text-sm mt-0.5">Bells University of Technology</p>
               </div>
               <div className="ml-auto hidden sm:block">
                 <div className="w-10 h-10 rounded-full border-2 border-brand-primary/20 flex items-center justify-center">

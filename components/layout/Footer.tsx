@@ -1,6 +1,7 @@
 "use client";
 
 import { GraduationCap, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const FacebookIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -30,33 +31,26 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 export default function Footer() {
   return (
     <footer className="bg-brand-secondary text-white pt-20 border-t-4 border-brand-primary">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="container-page">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 
           {/* Brand Info */}
           <div className="space-y-6">
             {/* Logo → reloads page on click */}
-            <a 
-              href="/" 
-              onClick={(e) => {
-                e.preventDefault();
-                window.location.href = "/";
-              }} 
-              className="flex items-center gap-3 group inline-flex"
-            >
+            <Link href="/" className="flex items-center gap-3 group inline-flex">
               <GraduationCap className="w-8 h-8 text-brand-accent" />
               <div>
                 <span className="text-2xl font-serif font-bold tracking-tight text-white group-hover:text-brand-accent transition-colors">
-                  REducate University
+                  Bells University of Technology
                 </span>
               </div>
-            </a>
+            </Link>
             <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
               A premier institution dedicated to academic excellence, innovation, and shaping the future leaders of tomorrow.
             </p>
             <div className="flex gap-3">
               {[FacebookIcon, TwitterIcon, InstagramIcon, LinkedinIcon].map((Icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-brand-accent hover:bg-brand-accent/10 transition-colors">
+                <a key={i} href="#" className="w-9 h-9 rounded-lg border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-brand-accent hover:bg-brand-accent/10 transition-colors">
                   <Icon className="w-4 h-4" />
                 </a>
               ))}
@@ -68,17 +62,17 @@ export default function Footer() {
             <h4 className="text-white font-serif font-bold mb-6 text-lg">University</h4>
             <ul className="space-y-3">
               {[
-                { label: "About Us", href: "#about" },
-                { label: "Academics", href: "#programs" },
-                { label: "Campus Life", href: "#campus" },
-                { label: "Alumni Directory", href: "#testimonials" },
-                { label: "Contact Us", href: "#contact" },
+                { label: "About", href: "/#about" },
+                { label: "Colleges", href: "/colleges" },
+                { label: "Programmes", href: "/#programs" },
+                { label: "Campus Life", href: "/#campus" },
+                { label: "Contact", href: "/#contact" },
               ].map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-gray-400 hover:text-brand-accent transition-colors flex items-center gap-2">
+                  <Link href={link.href} className="text-sm text-gray-400 hover:text-brand-accent transition-colors flex items-center gap-2">
                     <ArrowRight className="w-3 h-3 text-brand-primary" />
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -88,12 +82,12 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-serif font-bold mb-6 text-lg">Academics</h4>
             <ul className="space-y-3">
-              {["Undergraduate Programs", "Postgraduate Programs", "Doctoral Research", "Online Education", "Executive Certifications"].map((link) => (
+              {["Undergraduate", "Postgraduate", "Research", "Centres & Units", "News & Events"].map((link) => (
                 <li key={link}>
-                  <a href="#programs" className="text-sm text-gray-400 hover:text-brand-accent transition-colors flex items-center gap-2">
+                  <Link href="/#programs" className="text-sm text-gray-400 hover:text-brand-accent transition-colors flex items-center gap-2">
                     <ArrowRight className="w-3 h-3 text-brand-primary" />
                     {link}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -109,10 +103,10 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Email Address"
-                className="w-full px-4 py-3 bg-white/5 border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-brand-accent transition-colors"
+                className="input-dark"
                 required
               />
-              <button type="submit" className="w-full px-4 py-3 bg-brand-primary text-white font-semibold hover:bg-brand-primary-dark transition-colors">
+              <button type="submit" className="btn-primary w-full">
                 Subscribe
               </button>
             </form>
@@ -122,7 +116,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="py-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-500">
-            &copy; {new Date().getFullYear()} REducate University. All rights reserved.
+            &copy; {new Date().getFullYear()} Bells University of Technology. All rights reserved.
           </p>
 
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, GraduationCap } from "lucide-react";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,26 +18,33 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
+  const navLinks: Array<{
+    name: string;
+    href: string;
+    dropdown: Array<{ label: string; href: string }>;
+  }> = [
     {
       name: "About",
-      href: "#about",
-      dropdown: ["Our History", "Leadership", "Mission & Vision", "Careers"],
+      href: "/#about",
+      dropdown: [{ label: "About Bells", href: "/#about" }],
     },
     {
       name: "Academics",
-      href: "#programs",
-      dropdown: ["Undergraduate", "Postgraduate", "Doctoral", "Online Programs"],
+      href: "/colleges",
+      dropdown: [
+        { label: "Colleges", href: "/colleges" },
+        { label: "Programmes", href: "/#programs" },
+      ],
     },
     {
       name: "Campus Life",
-      href: "#campus",
-      dropdown: ["Housing", "Student Clubs", "Athletics", "Events"],
+      href: "/#campus",
+      dropdown: [{ label: "Campus Life", href: "/#campus" }],
     },
     {
       name: "Admissions",
-      href: "#admissions",
-      dropdown: ["Apply Now", "Financial Aid", "Visit Campus", "International"],
+      href: "/#contact",
+      dropdown: [{ label: "Contact Admissions", href: "/#contact" }],
     },
   ];
 
@@ -49,7 +57,7 @@ export default function Navbar() {
             : "bg-transparent py-5"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="container-page">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <a href="#" className="flex items-center gap-3 z-50 group">
@@ -58,7 +66,7 @@ export default function Navbar() {
               </div>
               <div>
                 <span className={`text-2xl font-serif font-bold tracking-tight transition-colors ${isScrolled ? 'text-brand-secondary' : 'text-white'}`}>
-                  REducate
+                  Bells University of Technology
                 </span>
               </div>
             </a>
@@ -72,7 +80,7 @@ export default function Navbar() {
                   onMouseEnter={() => setActiveDropdown(link.name)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  <a
+                  <Link
                     href={link.href}
                     className={`flex items-center gap-1 font-medium transition-colors ${
                       isScrolled ? "text-gray-700 hover:text-brand-primary" : "text-white/90 hover:text-white"
@@ -80,7 +88,7 @@ export default function Navbar() {
                   >
                     {link.name}
                     <ChevronDown className="w-4 h-4 opacity-70" />
-                  </a>
+                  </Link>
 
                   {/* Dropdown Menu */}
                   <AnimatePresence>
@@ -94,13 +102,13 @@ export default function Navbar() {
                       >
                         <div className="bg-white shadow-xl border border-gray-100 rounded-lg overflow-hidden py-2">
                           {link.dropdown.map((item) => (
-                            <a
-                              key={item}
-                              href="#"
+                            <Link
+                              key={item.label}
+                              href={item.href}
                               className="block px-4 py-2.5 text-sm text-gray-600 hover:text-brand-primary hover:bg-gray-50 transition-colors"
                             >
-                              {item}
-                            </a>
+                              {item.label}
+                            </Link>
                           ))}
                         </div>
                       </motion.div>
@@ -114,11 +122,7 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center gap-4">
               <a
                 href="#contact"
-                className={`px-6 py-2.5 rounded text-sm font-semibold transition-all ${
-                  isScrolled
-                    ? "bg-brand-primary text-white hover:bg-brand-secondary"
-                    : "bg-white text-brand-secondary hover:bg-gray-100"
-                }`}
+                className={isScrolled ? "btn-primary" : "btn-light"}
               >
                 Apply Now
               </a>
@@ -153,26 +157,28 @@ export default function Navbar() {
                     {link.name}
                   </div>
                   <div className="flex flex-col gap-3 pl-4 border-l-2 border-brand-primary/20">
-                    {link.dropdown.map((item) => (
-                      <a
-                        key={item}
-                        href="#"
-                        className="text-gray-600 hover:text-brand-primary"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item}
-                      </a>
-                    ))}
+                    {(link.dropdown ?? [{ label: "Open", href: link.href }]).map(
+                      (item) => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          className="text-gray-600 hover:text-brand-primary"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      )
+                    )}
                   </div>
                 </div>
               ))}
-              <a
-                href="#contact"
+              <Link
+                href="/#contact"
                 className="w-full py-4 bg-brand-primary text-white text-center rounded font-semibold mt-4"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Apply Now
-              </a>
+              </Link>
             </nav>
           </motion.div>
         )}

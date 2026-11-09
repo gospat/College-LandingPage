@@ -9,27 +9,12 @@ interface Message {
   content: string;
 }
 
-// Groq API key from environment variable
-const GROQ_API_KEY = process.env.NEXT_PUBLIC_GROQ_API_KEY || "";
-
-const SYSTEM_PROMPT = `You are a helpful and friendly admissions assistant for REducate University — a premier institution based in Lucknow, India founded 40+ years ago.
-
-Help students with:
-- Admissions process, eligibility, deadlines
-- Programs: BBA, MBA, BCA, MCA, B.Tech CS, AI & ML, Cybersecurity, Data Science, Digital Marketing, PhD
-- Campus life, hostels, sports, labs, library
-- Fees, scholarships, financial aid
-- Placements (100% placement record, top companies)
-- Faculty, research opportunities
-
-Be concise (2-3 sentences max), warm, and always encourage them to apply or ask more questions.`;
-
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "👋 Hi! I'm your REducate admissions assistant. Ask me anything about programs, fees, campus life, or placements!",
+      content: "Hi! I’m your Bells University admissions assistant. Ask me anything about programmes, admissions, campus life, or departments.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -54,68 +39,59 @@ export default function ChatWidget() {
     setInput("");
     setIsLoading(true);
 
-    // Guard: API key must be present (set NEXT_PUBLIC_GROQ_API_KEY in your hosting env vars)
-    if (!GROQ_API_KEY) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content:
-            "⚠️ The chatbot API key is not configured on the server. Please add NEXT_PUBLIC_GROQ_API_KEY in your Vercel/hosting environment variables and redeploy.",
-        },
-      ]);
-      setIsLoading(false);
-      return;
-    }
-
     try {
-      const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      const response = await fetch("/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${GROQ_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "openai/gpt-oss-20b",
-          messages: [
-            { role: "system", content: SYSTEM_PROMPT },
-            // Only send last 10 messages to stay within token limits
-            ...currentMessages.slice(-10).map((m) => ({ role: m.role, content: m.content })),
-          ],
-          max_tokens: 250,
-          temperature: 0.7,
+          messages: currentMessages.slice(-10).map((m) => ({
+            role: m.role,
+            content: m.content,
+          })),
         }),
       });
 
       if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        const reason = errData?.error?.message || `HTTP ${response.status}`;
-        console.error("Groq API error:", response.status, errData);
         setMessages((prev) => [
           ...prev,
           {
             role: "assistant",
-            content: `⚠️ API error (${response.status}): ${reason}\n\nPlease update the API key in .env.local and restart the dev server.`,
+            content:
+              "The chat service is temporarily unavailable right now. Please try again in a moment.",
           },
         ]);
         setIsLoading(false);
         return;
       }
 
-      const data = await response.json();
-      const raw = data.choices?.[0]?.message?.content;
-      if (!raw) throw new Error("Empty response from Groq");
-
-      // Strip <think>...</think> reasoning blocks some models emit
-      const reply = raw.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
+      const data = (await response.json().catch(() => null)) as
+        | { reply?: string }
+        | null;
+      const reply = data?.reply?.trim();
+      if (!reply) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "assistant",
+            content:
+              "The chat service is temporarily unavailable right now. Please try again in a moment.",
+          },
+        ]);
+        setIsLoading(false);
+        return;
+      }
 
       setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : "Unknown error";
-      console.error("Chat error:", msg);
+    } catch {
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: `⚠️ Error: ${msg}. Check console for details.` },
+        {
+          role: "assistant",
+          content:
+            "The chat service is temporarily unavailable right now. Please try again in a moment.",
+        },
       ]);
     } finally {
       setIsLoading(false);
@@ -157,7 +133,7 @@ export default function ChatWidget() {
                 <GraduationCap className="w-4 h-4 text-white" strokeWidth={1.5} />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-white font-semibold text-sm">REducate Assistant</div>
+                <div className="text-white font-semibold text-sm">Bells Assistant</div>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                   <span className="text-white/50 text-[11px]">Online · Instant replies</span>

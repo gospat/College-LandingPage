@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Library, FlaskConical, Dumbbell, Home, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const SLIDES = [
   { src: "/assets/slide-1.webp", caption: "Student Innovation Hub" },
@@ -130,10 +131,12 @@ export default function Campus() {
               className="group cursor-pointer"
             >
               <div className="relative h-60 overflow-hidden mb-4">
-                <img
+                <Image
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 img-overlay" />
                 <div className="absolute top-4 left-4 bg-brand-primary p-2.5">

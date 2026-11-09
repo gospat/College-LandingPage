@@ -1,8 +1,9 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Clock, MapPin, GraduationCap, X, Users } from "lucide-react";
+import { ArrowRight, Clock, MapPin, X, Users } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 type Program = {
   title: string;
@@ -149,7 +150,13 @@ function ProgramModal({ program, onClose }: { program: Program; onClose: () => v
         >
           {/* Image */}
           <div className="relative h-52 overflow-hidden flex-shrink-0">
-            <img src={program.image} alt={program.title} className="w-full h-full object-cover" />
+            <Image
+              src={program.image}
+              alt={program.title}
+              fill
+              sizes="(max-width: 1024px) 100vw, 512px"
+              className="object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <span className="absolute bottom-4 left-5 text-[10px] font-bold px-2.5 py-1 bg-brand-primary text-white uppercase tracking-widest">
               {program.category}
@@ -294,10 +301,12 @@ export default function Programs() {
               onClick={() => setSelectedProgram(program)}
             >
               <div className="relative h-40 overflow-hidden">
-                <img
+                <Image
                   src={program.image}
                   alt={program.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <span className="absolute top-3 left-3 text-[10px] font-bold px-2 py-0.5 bg-brand-primary text-white uppercase tracking-widest">

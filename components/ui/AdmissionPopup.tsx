@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, GraduationCap, Star } from "lucide-react";
+import Image from "next/image";
 
 export default function AdmissionPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,10 +60,12 @@ export default function AdmissionPopup() {
 
               {/* ── Left: Image Panel ── */}
               <div className="relative sm:w-[340px] w-full h-56 sm:h-auto flex-shrink-0 overflow-hidden">
-                <img
+                <Image
                   src="/assets/convocation.webp"
-                  alt="REducate University Convocation Ceremony"
-                  className="w-full h-full object-cover"
+                  alt="Bells University of Technology Convocation Ceremony"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 340px"
+                  className="object-cover"
                 />
                 {/* gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-brand-secondary/80 via-brand-secondary/30 to-transparent" />
@@ -79,7 +82,7 @@ export default function AdmissionPopup() {
                 <div className="absolute bottom-0 left-0 right-0 px-5 py-4 flex gap-5">
                   {[
                     { value: "40+", label: "Years" },
-                    { value: "100%", label: "Placement" },
+                    { value: "Support", label: "Admissions" },
                     { value: "12K+", label: "Alumni" },
                   ].map((s) => (
                     <div key={s.label} className="text-center">
@@ -91,9 +94,11 @@ export default function AdmissionPopup() {
 
                 {/* second image inset — mobile hidden */}
                 <div className="hidden sm:block absolute right-3 top-1/2 -translate-y-1/2 w-20 h-28 rounded-xl overflow-hidden border-2 border-white/30 shadow-lg">
-                  <img
+                  <Image
                     src="/assets/campus-aerial.webp"
                     alt="Campus aerial view"
+                    width={80}
+                    height={112}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -127,8 +132,8 @@ export default function AdmissionPopup() {
                 </div>
 
                 <p className="text-gray-500 text-[13.5px] leading-relaxed mb-5">
-                  Applications are now open for BBA, MBA, B.Tech, MCA, AI&ML, Cybersecurity &amp; more.{" "}
-                  <strong className="text-brand-secondary font-semibold">Limited seats available</strong> — apply before they fill up.
+                  Applications are open for undergraduate and postgraduate programmes across the university colleges.{" "}
+                  <strong className="text-brand-secondary font-semibold">Apply early</strong> to complete your application on time.
                 </p>
 
                 {/* Trust row */}

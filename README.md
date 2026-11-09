@@ -1,8 +1,8 @@
-# REducate University — College Landing Page
+# Bells University of Technology — Website
 
-<img width="1905" height="1083" alt="REducate Hero Section" src="https://github.com/user-attachments/assets/20ab5c60-9d65-4ff0-a2db-44b62d59f73d" />
+<img width="1905" height="1083" alt="Bells University homepage" src="https://github.com/user-attachments/assets/20ab5c60-9d65-4ff0-a2db-44b62d59f73d" />
 
-A high-conversion, professional university landing page built with **Next.js 15**, **Tailwind CSS v4**, and **Framer Motion**. Designed and developed as a frontend assignment by [Mayank Singh](https://codermayank69.vercel.app).
+A university website UI built with **Next.js**, **Tailwind CSS v4**, and **Framer Motion**.
 
 ---
 
@@ -11,7 +11,7 @@ A high-conversion, professional university landing page built with **Next.js 15*
 | Feature | Description |
 |---|---|
 | **AI Chat Assistant** | Powered by Groq (LLaMA 3) — answers student queries about admissions, programs, fees, and placements in real-time |
-| **Admission Popup** | Scroll-triggered (35%) minimal popup with direct apply CTA |
+| **Admission Popup** | Optional admissions prompt (disabled by default) |
 | **Hero Section** | Full-screen campus imagery with animated stats counter and Quick Links grid |
 | **From the Founder's Diary** | Cinematic founder section with scroll-animated portrait and vision statement |
 | **Programs Explorer** | Filterable tabs across Undergraduate / Postgraduate / Doctoral / Certification with detailed modals |
@@ -33,7 +33,6 @@ Three core values guided every design decision:
 3. **Orthogonality** — The codebase is structured so that each component does one thing well. Layout, sections, and UI utilities are independently changeable without side effects.
 
 ### Inspiration Sites Researched
-- [BSSDC](https://bssdc.softproindia.in/) — Indian college structure and content architecture
 - [JGU](https://jguni.in/) — Clean academic navigation patterns
 - [Bates College](https://www.bates.edu/) — Premium academic aesthetics and hero design
 

@@ -8,7 +8,6 @@ import Testimonials from "@/components/sections/Testimonials";
 import CTA from "@/components/sections/CTA";
 import MapSection from "@/components/sections/MapSection";
 import Footer from "@/components/layout/Footer";
-import AdmissionPopup from "@/components/ui/AdmissionPopup";
 import ChatWidget from "@/components/ui/ChatWidget";
 
 export default function Home() {
@@ -27,7 +26,6 @@ export default function Home() {
         <Footer />
       </main>
       {/* Global overlays */}
-      <AdmissionPopup />
       <ChatWidget />
     </>
   );

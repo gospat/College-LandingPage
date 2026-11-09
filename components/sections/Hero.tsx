@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Play, Users, Lightbulb, Megaphone, MapPin, ChevronsRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -14,7 +14,6 @@ function useCountUp(
   const [count, setCount] = useState(0);
   useEffect(() => {
     if (!start) return;
-    setCount(0);
     const totalSteps = Math.ceil(target / step);
     const intervalMs = duration / totalSteps;
     let current = 0;
@@ -81,15 +80,15 @@ const quickLinks = [
   {
     title: "FUTURE STUDENTS",
     icon: <Users className="w-10 h-10 md:w-12 md:h-12 text-white mb-5" strokeWidth={1.2} />,
-    desc: "REducate's unique personality rests on the bedrock values of academic excellence, inclusivity, and social responsibility.",
-    btnText: "Discover REducate",
+    desc: "Learn about entry requirements, admission routes, and the support available to help you start strong.",
+    btnText: "Explore Admissions",
     bgColor: "#163c54", // Blue
     img: "/assets/students-group.webp",
   },
   {
     title: "ACADEMICS",
     icon: <Lightbulb className="w-10 h-10 md:w-12 md:h-12 text-white mb-5" strokeWidth={1.2} />,
-    desc: "A REducate education fosters intellectual inquiry and reflection, personal growth, and a commitment to the world beyond oneself.",
+    desc: "Explore colleges, programmes, and academic opportunities designed for innovation and real-world impact.",
     btnText: "Explore Academics",
     bgColor: "#a49322", // Gold
     img: "/assets/classroom.webp",
@@ -141,7 +140,7 @@ export default function Hero() {
         {/* Floating dots grid */}
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden="true"
           style={{backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '32px 32px'}} />
-        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 w-full pt-32 md:pt-48">
+        <div className="relative z-10 container-page w-full pt-32 md:pt-48">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
@@ -149,7 +148,7 @@ export default function Hero() {
             className="max-w-2xl"
           >
             <span className="eyebrow text-white/50 mb-5 inline-block">
-              Est. 1984 · Ahmedabad, India
+              Ota, Ogun State, Nigeria
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-serif text-white leading-[1.05] mb-5">
               Ignite Your
@@ -159,21 +158,21 @@ export default function Hero() {
               </em>
             </h1>
             <p className="text-base md:text-lg text-white/70 mb-10 max-w-lg font-light leading-relaxed">
-              Transformative education that blends rigorous academics with
-              real-world impact. Join a 40-year legacy shaping global leaders.
+              Technology-focused learning that blends strong academics with
+              practical skills, research thinking, and character development.
             </p>
 
             <div className="flex flex-wrap gap-4">
               <a
                 href="#programs"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-brand-primary text-white text-sm font-semibold hover:bg-brand-primary-dark transition-colors"
+                className="btn-primary"
               >
-                Explore Programs
+                Explore Programmes
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
                 href="#campus"
-                className="inline-flex items-center gap-3 px-7 py-3.5 bg-white/10 border border-white/30 text-white text-sm font-medium hover:bg-white/20 transition-colors backdrop-blur-sm"
+                className="btn-ghost"
               >
                 <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
                   <Play className="w-3.5 h-3.5" />
@@ -205,8 +204,7 @@ export default function Hero() {
       {/* Quick Links Section with V-shape top */}
       <section className="relative z-20 w-full -mt-12 md:-mt-28">
         <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full"
-          style={{ clipPath: "polygon(0 0, 50% 6vw, 100% 0, 100% 100%, 0 100%)" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full hero-quicklinks-clip"
         >
           {quickLinks.map((link, i) => (
             <div key={i} className="relative group flex flex-col items-center text-center px-6 pt-24 md:pt-36 pb-12 overflow-hidden h-full min-h-[400px]">

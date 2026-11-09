@@ -1,27 +1,16 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-});
-
 export const metadata: Metadata = {
-  title: "REducate University | Future-Ready Education in Ahmedabad",
+  title: "Bells University of Technology | Admissions, Academics & Colleges",
   description:
-    "REducate University — a new-age university offering programs in Management, Computing, Engineering, Commerce, and Law. Shape your future with industry-aligned education.",
+    "Bells University of Technology — explore colleges, departments, programmes, campus life, and admissions information.",
   keywords:
-    "university, MBA, BBA, BCA, MCA, BCA, B.Tech, engineering, management, Ahmedabad, Gujarat, education",
+    "Bells University of Technology, Bells University, university, Nigeria, admissions, academics, colleges, programmes",
   openGraph: {
-    title: "REducate University | Future-Ready Education",
+    title: "Bells University of Technology",
     description:
-      "A New Age University empowering students with future-proof skills.",
+      "Explore colleges, departments, programmes, campus life, and admissions information.",
     type: "website",
   },
 };
@@ -32,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
+    <html lang="en" className="scroll-smooth">
       <body className="font-sans antialiased bg-white text-gray-900">{children}</body>
     </html>
   );

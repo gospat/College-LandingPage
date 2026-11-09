@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import Image from "next/image";
 
 export default function Testimonials() {
   const testimonials = [
@@ -10,7 +11,7 @@ export default function Testimonials() {
       id: 1,
       name: "Dr. Sarah Jenkins",
       role: "Class of 2018 · Lead Researcher, GlobalTech",
-      text: "The rigorous academic environment and continuous support from faculty at REducate completely transformed my approach to problem-solving. It's a place that genuinely fosters innovation.",
+      text: "The rigorous academic environment and continuous support from faculty at Bells strengthened my approach to problem-solving. It’s a place that genuinely fosters innovation.",
       image: "/assets/alumni-sarah.webp",
     },
     {
@@ -24,7 +25,7 @@ export default function Testimonials() {
       id: 3,
       name: "Priya Sharma",
       role: "Class of 2019 · Senior Analyst, FinCorp",
-      text: "From world-class libraries to exceptional mentorship, my time at REducate was the foundation of my career. The university truly stands by its commitment to excellence.",
+      text: "From world-class libraries to exceptional mentorship, my time at Bells was the foundation of my career. The university truly stands by its commitment to excellence.",
       image: "/assets/alumni-priya.webp",
     },
   ];
@@ -62,13 +63,15 @@ export default function Testimonials() {
                 transition={{ duration: 0.4 }}
               >
                 <p className="text-xl md:text-2xl text-gray-700 font-serif leading-relaxed italic mb-8">
-                  "{testimonials[currentIndex].text}"
+                  &ldquo;{testimonials[currentIndex].text}&rdquo;
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-primary">
-                    <img
+                    <Image
                       src={testimonials[currentIndex].image}
                       alt={testimonials[currentIndex].name}
+                      width={48}
+                      height={48}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -109,12 +112,14 @@ export default function Testimonials() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.45 }}
-                className="aspect-[3/4] overflow-hidden shadow-2xl"
+                className="aspect-[3/4] overflow-hidden shadow-2xl relative"
               >
-                <img
+                <Image
                   src={testimonials[currentIndex].image}
                   alt={testimonials[currentIndex].name}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 400px"
+                  className="object-cover"
                 />
               </motion.div>
             </AnimatePresence>
@@ -127,7 +132,13 @@ export default function Testimonials() {
         <div className="grid grid-cols-3 gap-4">
           {["/assets/students-group.webp", "/assets/research.webp", "/assets/convocation.webp"].map((src, i) => (
             <div key={i} className="relative h-40 overflow-hidden group">
-              <img src={src} alt={`Campus life ${i + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <Image
+                src={src}
+                alt={`Campus life ${i + 1}`}
+                fill
+                sizes="(max-width: 1024px) 33vw, 300px"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
               <div className="absolute inset-0 bg-brand-secondary/20 group-hover:bg-brand-secondary/0 transition-colors" />
             </div>
           ))}
